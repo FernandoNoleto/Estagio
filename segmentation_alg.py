@@ -96,22 +96,23 @@ def diferenca(img):
 
 def main(nome_imagem):
     # nome_imagem = "area-queimada.png"
+    nome_imagem = "static/"+nome_imagem
     print(nome_imagem)
     img = abrir_imagem(nome_imagem)
     
     img2 = encontrar_pixels_de_queimadas(img)
-    img2.save("generated_images/segmentada-cores.png")
+    img2.save("static/segmentada-cores.png")
 
 
     img3 = diferenca(img2)
-    img3.save('generated_images/diferenca.png')
+    img3.save('static/diferenca.png')
     
-    img4 = cv2.imread('generated_images/diferenca.png',0)
+    img4 = cv2.imread('static/diferenca.png',0)
     kernel = np.ones((4,4),np.uint8)
 
     opening = cv2.morphologyEx(img4, cv2.MORPH_OPEN, kernel)
-    cv2.imwrite('resultado_final.png', opening)
-    return 'resultado_final.png'
+    cv2.imwrite('static/resultado_final.png', opening)
+    return 'static/resultado_final.png'
 
     
     # mostrar_imagem(nome_imagem+"-segmentada"+".png")

@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <style>
+    * {
+      box-sizing: border-box;
+    }
+
+    .column {
+      float: left;
+      width: 50%;
+      padding: 5px;
+    }
+
+    /* Clearfix (clear floats) */
+    .row::after {
+      content: "";
+      clear: both;
+      display: table;
+    }
+  </style>
+</head>
+
+<body>
+
+  <h2>Imagens antes e depois</h2>
+  {{imagem}}
+
+  <div class="row">
+    <div class="column">
+        <img src="{{url_for('static', filename='{{imagem}}')}}" alt="Imagem original" style="width:100%">
+    </div>
+    <div class="column">
+      <img src="{{url_for('static', filename='resultado_final.png')}}" alt="Resultado final" style="width:100%">
+    </div>
+  </div>
+
+</body>
+
+</html>
