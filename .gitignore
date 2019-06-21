@@ -5,6 +5,9 @@ __pycache__/
 # C extensions
 *.so
 
+# VSCode folder
+.vscode/
+
 # Distribution / packaging
 .Python
 env/
