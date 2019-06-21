@@ -1,15 +1,15 @@
 from PIL import Image, ImageFilter, ImageEnhance
-import numpy as np
 from itertools import product
-# import math, random
-# import time
-# from subprocess import call
+import numpy as np
+
+
 import cv2
 
 # rio = (12, 47, 206, 255)
 # plantacao = (68, 109, 66, 255)
 # floresta = (8, 183, 0, 255)
 queimada = (168, 28, 13, 255)
+caminho = "/home/fernando/Documentos/UFT/9 Período/Estagio Supervisionado/Estagio/generated_images/"
 
 #Abre uma imagem
 def abrir_imagem(nome_img):
@@ -88,30 +88,33 @@ def diferenca(img):
         else:
             pix2[x,y] = (0,0,0)
     
-    new_img.save('diferenca.png')
+    # new_img.save('diferenca.png')
 
     return new_img
 
 
 
-def main():
-    nome_imagem = "area-queimada.png"
+def main(nome_imagem):
+    # nome_imagem = "area-queimada.png"
+    print(nome_imagem)
     img = abrir_imagem(nome_imagem)
     
     img2 = encontrar_pixels_de_queimadas(img)
-    img2.save("segmentada-cores.png")
+    img2.save("generated_images/segmentada-cores.png")
 
 
     img3 = diferenca(img2)
+    img3.save('generated_images/diferenca.png')
     
-    img4 = cv2.imread('diferenca.png',0)
+    img4 = cv2.imread('generated_images/diferenca.png',0)
     kernel = np.ones((4,4),np.uint8)
 
     opening = cv2.morphologyEx(img4, cv2.MORPH_OPEN, kernel)
-    cv2.imwrite('diferenca_abertura.png', opening)
+    cv2.imwrite('resultado_final.png', opening)
+    return 'resultado_final.png'
 
     
     # mostrar_imagem(nome_imagem+"-segmentada"+".png")
 
-if __name__ == '__main__':
-    main()
+# if __name__ == '__main__':
+#     main()

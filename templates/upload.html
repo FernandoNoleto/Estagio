@@ -1,34 +1,33 @@
 <!DOCTYPE html>
 <html>
-  <head>
-        <meta charset="utf-8" />
-        <title>Hello, Flask</title>
-        <script class="jsbin" src="https://ajax.googleapis.com/ajax/libs/jquery/1/jquery.min.js"></script>
-        <link rel= "stylesheet" type= "text/css" href= "{{ url_for('static',filename='styles/mainpage.css') }}">
-  </head>
-  <body>
-    <script src="{{ url_for('static',filename='js/mainpage.js') }}"></script>
-    <div class="file-upload">
-      <button class="file-upload-btn" type="button" onclick="$('.file-upload-input').trigger( 'click' )">Add Image</button>
 
-      <div class="image-upload-wrap">
-        <input class="file-upload-input" type='file' onchange="readURL(this);" accept="image/*" />
-        <div class="drag-text">
-          <h3>Drag and drop a file or select add Image</h3>
-        </div>
-      </div>
-      <div class="file-upload-content">
-        <img class="file-upload-image" src="#" alt="your image" />
-        
-        <div class="image-title-wrap">
-          <button type="button" onclick="removeUpload()" class="remove-image">Remove <span class="image-title">Uploaded Image</span></button>
-        </div>
-        
-        <div class="image-title-wrap">
-          <button type="button" onclick="runSegmentation()" class="remove-image">Run <span class="image-title">Uploaded Image</span></button>
-        </div>
+<head>
+  <meta charset="utf-8" />
+  <title>Hello, Flask</title>
+  <!-- <script class="jsbin" src="https://ajax.googleapis.com/ajax/libs/jquery/1/jquery.min.js"></script> -->
+  <!-- <link rel= "stylesheet" type= "text/css" href= "{{ url_for('static',filename='styles/mainpage.css') }}"> -->
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css"
+    integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+</head>
 
+<body>
+
+  <div class="container">
+    <form method=post enctype=multipart/form-data>
+      <div class="input-group">
+      
+        <div class="custom-file">
+          <input type=file class="custom-file-input" name=file>
+          <label class="custom-file-label" for="inputGroupFile04">Escolher imagem</label>
+        </div>
+    
+        <div class="input-group-append">
+          <input type=submit class="btn btn-primary" value=Enviar>
+        </div>    
+      
       </div>
-    </div>
-  </body>
+    </form>
+  </div>
+  
+</body>
 </htm>
