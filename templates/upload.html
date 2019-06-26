@@ -8,12 +8,64 @@
   <!-- <link rel= "stylesheet" type= "text/css" href= "{{ url_for('static',filename='styles/mainpage.css') }}"> -->
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css"
     integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+    <style>
+    h2 {
+      margin-left: auto;
+      margin-right: auto;
+      text-align: center;
+      font-family: 'Times New Roman', Times, serif
+    }
+
+  </style>
 </head>
 
 <body>
+  
+    <br><br>
+  <h2>Identificação de queimadas por imagens de satélites</h2>
+
+  <br><br><br>
+  
 
   <div class="container">
     <form method=post enctype=multipart/form-data>
+
+      <!-- Parâmetro da abertura -->
+
+      <div class="input-group">
+        <select name=open class="custom-select" id="open_par" aria-label="Example select with button addon">
+          <option value="3" selected>Escolha o tamanho do elemento estruturante da abertura</option>
+          <option value="1">Tamanho do elemento estruturante: 1</option>
+          <option value="2">Tamanho do elemento estruturante: 2</option>
+          <option value="3">Tamanho do elemento estruturante: 3</option>
+          <option value="4">Tamanho do elemento estruturante: 4</option>
+          <option value="5">Tamanho do elemento estruturante: 5</option>
+        </select>
+        <br>
+        <small id="openHelp" class="form-text text-muted">Valor padrão: 3</small>
+ 
+        
+      </div>
+
+      <br>
+      
+      <!-- Tipo de segmentação  -->
+
+      <div class="input-group">
+        <select name=seg class="custom-select" id="seg_par" aria-label="Example select with button addon">
+          <option value="1" selected>Escolha o tipo de segmentação</option>
+          <option value="1">Segmentação 1</option>
+          <option value="2">Segmentação 2</option>
+        </select>
+        <br>
+        <small id="segmentacaoHelp" class="form-text text-muted">Valor padrão: 1</small>
+        
+      </div>
+
+      <br>
+
+      <!-- Escolher imagem -->
+      
       <div class="input-group">
       
         <div class="custom-file">
@@ -26,6 +78,9 @@
         </div>    
       
       </div>
+
+      <!-- Final -->
+
     </form>
   </div>
   

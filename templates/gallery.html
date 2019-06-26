@@ -5,6 +5,7 @@
   <style>
     * {
       box-sizing: border-box;
+      background-color: floralwhite;
     }
 
     .column {
@@ -19,20 +20,29 @@
       clear: both;
       display: table;
     }
+
+    h2 {
+      margin-left: auto;
+      margin-right: auto;
+      text-align: center;
+      font-family: 'Times New Roman', Times, serif
+    }
   </style>
 </head>
 
 <body>
 
   <h2>Imagens antes e depois</h2>
-  {{imagem}}
-
+  
   <div class="row">
     <div class="column">
-        <img src="{{url_for('static', filename='{{imagem}}')}}" alt="Imagem original" style="width:100%">
+        Imagem original: {{imagem}}
+      <img src="{{url_for('static', filename=imagem)}}" alt="Imagem original" style="width:100%">
     </div>
     <div class="column">
-      <img src="{{url_for('static', filename='resultado_final.png')}}" alt="Resultado final" style="width:100%">
+      Imagem resultado: "{{resultado}}"
+      <img src="{{url_for('static', filename=resultado)}}" alt="Resultado final" style="width:100%">
+      Elemento estruturante de tamanho: {{es}} e tipo de segmentação: {{seg}}
     </div>
   </div>
 

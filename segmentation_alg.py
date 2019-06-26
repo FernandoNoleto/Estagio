@@ -53,17 +53,26 @@ def mostrar_imagem(nome_img):
 
 
 
-#Binarizar com regras
-def encontrar_pixels_de_queimadas(img):
+# Binarizar com regras
+def encontrar_pixels_de_queimadas(img, segmentacao):
     pix = img.load()
 
     width, height = img.size
     pixels_queimadas = []
     
-    for y, x in product(range(height), range(width)):
-        r,g,b,a = pix[x,y]
-        if(r > 63 and r < 114 and g > 63 and g < 117 and b > 40 and b < 92):
-            pixels_queimadas.append((x,y))
+    #Segmentacao de Palmas
+    if segmentacao == 1:
+        for y, x in product(range(height), range(width)):
+            r,g,b,a = pix[x,y]
+            if(r > 63 and r < 114 and g > 63 and g < 117 and b > 40 and b < 92):
+                pixels_queimadas.append((x,y))
+    
+    #Segmentacao do resto
+    if segmentacao == 2:
+        for y, x in product(range(height), range(width)):
+            r,g,b,a = pix[x,y]
+            if(r > 80 and r < 190 and g > 35 and g < 132 and b > 110 and b < 215):
+                pixels_queimadas.append((x,y))
     
 
     for pixel in pixels_queimadas:
@@ -72,6 +81,7 @@ def encontrar_pixels_de_queimadas(img):
     
 
     return img
+
 
 
 def diferenca(img):
@@ -94,13 +104,17 @@ def diferenca(img):
 
 
 
-def main(nome_imagem):
+def main(nome_imagem, abertura, segmentacao):
     # nome_imagem = "area-queimada.png"
+    aux = nome_imagem
     nome_imagem = "static/"+nome_imagem
-    print(nome_imagem)
+    print("Nome image: {}".format(nome_imagem))
+    print("Open par: {}".format(abertura))
+    print("Segm par: {}".format(segmentacao))
+    
     img = abrir_imagem(nome_imagem)
     
-    img2 = encontrar_pixels_de_queimadas(img)
+    img2 = encontrar_pixels_de_queimadas(img, segmentacao)
     img2.save("static/segmentada-cores.png")
 
 
@@ -108,11 +122,13 @@ def main(nome_imagem):
     img3.save('static/diferenca.png')
     
     img4 = cv2.imread('static/diferenca.png',0)
-    kernel = np.ones((4,4),np.uint8)
+    kernel = np.ones((abertura,abertura),np.uint8)
 
     opening = cv2.morphologyEx(img4, cv2.MORPH_OPEN, kernel)
-    cv2.imwrite('static/resultado_final.png', opening)
-    return 'static/resultado_final.png'
+    nome = "static/resultado"+str(abertura)+str(segmentacao)+aux
+    print("Nome local salvar: {}".format(nome))
+    cv2.imwrite(nome, opening)    
+    # return 'static/resultado_final.png'
 
     
     # mostrar_imagem(nome_imagem+"-segmentada"+".png")
