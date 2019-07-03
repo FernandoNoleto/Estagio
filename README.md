@@ -8,6 +8,7 @@ $pip install -r requirements.txt
 
 After installing the dependencies, run the app.py file using the following commands:
 ```
+$export FLASK_ENV=development
 $export FLASK_APP=app.py
 $flask run 
 ```

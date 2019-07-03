@@ -64,7 +64,7 @@ def encontrar_pixels_de_queimadas(img, segmentacao):
     if segmentacao == 1:
         for y, x in product(range(height), range(width)):
             r,g,b,a = pix[x,y]
-            if(r > 63 and r < 114 and g > 63 and g < 117 and b > 40 and b < 92):
+            if(r > 63 and r < 114 and g > 63 and g < 117 and b > 40 and b < 99):
                 pixels_queimadas.append((x,y))
     
     #Segmentacao do resto
