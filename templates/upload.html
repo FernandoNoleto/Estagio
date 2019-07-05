@@ -15,19 +15,28 @@
       text-align: center;
       font-family: 'Times New Roman', Times, serif
     }
+    .center {
+      display: block;
+      margin-left: auto;
+      margin-right: auto;
+      width: 10%;
+    }
 
   </style>
 </head>
 
 <body>
   
-    <br><br>
+  <br>
+  <img src="../static/brasaoUFT.png" width="10%" height="10%" class="center">
   <h2>Identificação de queimadas por imagens de satélites</h2>
 
   <br><br><br>
   
 
   <div class="container">
+
+    
     <form method=post enctype=multipart/form-data>
 
       <!-- Parâmetro da abertura -->
@@ -44,7 +53,7 @@
         
       </div>
       <small id="segmentacaoHelp" class="form-text text-muted">
-        Tamanho do elemento estruturante a ser utilizado.
+        Tamanho do elemento estruturante a ser utilizado. Valor padrão="3"
       </small>
 
       <br>
@@ -59,7 +68,7 @@
         </select>        
       </div>
       <small id="segmentacaoHelp" class="form-text text-muted">
-        Regra de segmentação a ser utilizada.
+        Regra de segmentação a ser utilizada. Valor padrão="1"
       </small>
 
       <br>
