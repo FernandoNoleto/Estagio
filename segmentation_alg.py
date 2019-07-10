@@ -9,6 +9,7 @@ import cv2
 # plantacao = (68, 109, 66, 255)
 # floresta = (8, 183, 0, 255)
 queimada = (168, 28, 13, 255)
+branco = (255,255,255, 255)
 caminho = "/home/fernando/Documentos/UFT/9 Período/Estagio Supervisionado/Estagio/generated_images/"
 
 #Abre uma imagem
@@ -91,6 +92,7 @@ def diferenca(img):
 
 
     width, height = img.size
+    
 
     for y, x in product(range(height), range(width)):
         if pix[x,y] == queimada:
@@ -100,9 +102,22 @@ def diferenca(img):
     
     # new_img.save('diferenca.png')
 
+
     return new_img
 
 
+def area_de_queimada(img):
+    pix  = img.load()
+    width, height = img.size
+    qtd_pontos = 0
+    
+    for y, x in product(range(height), range(width)):
+        # print ("pix[x,y] {}".format(pix[x,y]))
+        if pix[x,y] == 255: # se for uma area detectada com regiao de queimada
+            qtd_pontos +=1
+
+    #cada pixel equivale a 73 metros²
+    return qtd_pontos*7
 
 def main(nome_imagem, abertura, segmentacao):
     # nome_imagem = "area-queimada.png"
@@ -127,7 +142,13 @@ def main(nome_imagem, abertura, segmentacao):
     opening = cv2.morphologyEx(img4, cv2.MORPH_OPEN, kernel)
     nome = "static/resultado"+str(abertura)+str(segmentacao)+aux
     print("Nome local salvar: {}".format(nome))
-    cv2.imwrite(nome, opening)    
+    cv2.imwrite(nome, opening)
+    
+    # img5 = abrir_imagem(nome)
+    area = area_de_queimada(abrir_imagem(nome))
+    print("Area de queimada: {}m²".format(area))
+    return area
+
     # return 'static/resultado_final.png'
 
     

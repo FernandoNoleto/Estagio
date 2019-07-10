@@ -62,9 +62,9 @@ def send_image(filename):
 @app.route('/uploaded/<filename>/<int:openpar>/<int:segpar>', methods=['GET', 'POST'])
 def uploaded_image(filename, openpar=3, segpar=1):
     
-    main(filename, openpar, segpar)
+    area_queimada = main(filename, openpar, segpar)
     res = "resultado"+str(openpar)+str(segpar)+filename
-    return render_template("gallery.html", imagem=filename, resultado=res, es=openpar, seg=segpar)
+    return render_template("gallery.html", imagem=filename, resultado=res, es=openpar, seg=segpar, area = area_queimada)
     
     
 if __name__ == "__main__":
